@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { ReactComponent as Logo } from '../../logo.svg';
 import './Landing.scss'
 
 export default () => {
@@ -13,7 +14,7 @@ export default () => {
   return (
     <div className={'landing'}>
       <div>
-
+    <Logo className={'logo'}/>
   <h1 className={'heading'}>Welcome to the chat, {name}</h1>
         <form className={'landing-form'} onSubmit={play}>
           <input
