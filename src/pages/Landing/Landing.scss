@@ -1,0 +1,24 @@
+$highlight-color: #00a0df;
+
+.landing {
+  height: 100vh;
+  background-color: rgb(37, 41, 46);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.heading {
+  color: rgb(255, 255, 255);
+}
+.landing-button {
+  background-color: $highlight-color;
+  color: #fff;
+  padding: 10px 48px;
+
+}
+.landing-form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
