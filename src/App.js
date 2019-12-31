@@ -9,12 +9,11 @@ const App = () => {
       <Switch>
 
         <Route path="/chat">
-          <Chat/>
+          <Chat />
         </Route>
 
-
         <Route path="/">
-          <Landing/>
+          <Landing />
         </Route>
 
       </Switch>
