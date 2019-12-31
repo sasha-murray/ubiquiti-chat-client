@@ -1,7 +1,14 @@
 import io from 'socket.io-client'
-import { JOIN_CHAT, joinChat, setUsers, closeRoom } from './actions/actions'
+import {
+  DISCONNECT,
+  JOIN_CHAT,
+  SEND_MESSAGE,
+  disconnectManually,
+  newMessage,
+  setToast
+} from './state/actions'
 
-const url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_URL : 'http://localhost:8000'
+const url = 'http://localhost:8000'
 
 const socketMiddleware = state => {
   let socket = null
@@ -9,24 +16,37 @@ const socketMiddleware = state => {
     socket = io(url)
   }
 
-  socket.on('users', data => {
-    state.dispatch(setUsers(data))
+  socket.on('message from server', data => {
+    state.dispatch(newMessage(data))
   })
 
-  socket.on('room closing', () => {
-    console.log('Room closing!')
-    state.dispatch(closeRoom())
-    window.location.href = '/'
+  socket.on('inactive', () => {
+    socket.disconnect()
+    state.dispatch(disconnectManually())
+    state.dispatch(setToast('Disconnected due to inactivity', 'info'))
   })
 
+  socket.on('server shutting down', () => {
+    socket.disconnect()
+    state.dispatch(disconnectManually())
+    state.dispatch(setToast('Disconnected due to server shutdown', 'error'))
+  })
   return next => action => {
-    switch (action.type) {
-
+    const { type, payload } = action
+    switch (type) {
       case JOIN_CHAT: {
-        socket.emit('join chat', action)
+        socket.emit('user joined', payload)
         break
       }
 
+      case SEND_MESSAGE: {
+        socket.emit('message from client', payload)
+        break
+      }
+      case DISCONNECT: {
+        socket.disconnect()
+        break
+      }
       default:
         break
     }
