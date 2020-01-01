@@ -28,6 +28,6 @@ to install dependencies, and run a development version of the client with
 >`docker run -p 3000:80 --name chat_client client:1.0.0`
 
 #### Access
-The server will be available on `http://localhost:3000/`.
+The client will be available on `http://localhost:3000/`.
 
 ---
