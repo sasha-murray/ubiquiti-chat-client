@@ -5,8 +5,11 @@ import ErrorIcon from '@material-ui/icons/Error'
 import InfoIcon from '@material-ui/icons/Info'
 
 import useStyles from './Style'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
 import { hideToast } from '../../state/actions'
+import { RootState } from '../../state/reducers/rootReducer'
+
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
 const iconVariant = {
   error: ErrorIcon,
@@ -16,12 +19,12 @@ const iconVariant = {
 const Toast = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const message = useSelector(state => state.toast.message)
-  const open = useSelector(state => state.toast.shown)
-  const variant = useSelector(state => state.toast.variant)
+  const message = useTypedSelector(state => state.toast.message)
+  const open = useTypedSelector(state => state.toast.shown)
+  const variant = useTypedSelector(state => state.toast.variant)
   const Icon = iconVariant[variant]
 
-  const handleClose = (event, reason) => {
+  const handleClose = (event: React.SyntheticEvent, reason: string) => {
     if (reason === 'clickaway') { return }
     dispatch(hideToast())
   }

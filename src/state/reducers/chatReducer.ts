@@ -4,7 +4,7 @@ import {
   JOIN_CHAT
 } from '../actions'
 
-const initialState = []
+const initialState: Array<Object> = []
 
 export default (state = initialState, action) => {
   const { type, payload } = action

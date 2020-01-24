@@ -11,10 +11,7 @@ import {
 const url = 'http://localhost:8000'
 
 const socketMiddleware = state => {
-  let socket = null
-  if (!socket) {
-    socket = io(url)
-  }
+  const socket = io(url)
 
   socket.on('message from server', data => {
     state.dispatch(newMessage(data))
