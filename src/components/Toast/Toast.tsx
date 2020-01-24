@@ -7,9 +7,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import useStyles from './Style'
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
 import { hideToast } from '../../state/actions'
-import { RootState } from '../../state/reducers/rootReducer'
-
-const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
+import { RootState , useTypedSelector} from '../../state/reducers/rootReducer'
 
 const iconVariant = {
   error: ErrorIcon,
@@ -47,7 +45,7 @@ const Toast = () => {
           </span>
         }
         action={[
-          <IconButton key="close" aria-label="close" color="inherit" onClick={handleClose}>
+          <IconButton key="close" aria-label="close" color="inherit" /*onClick={handleClose}*/>
             <CloseIcon className={classes.icon} />
           </IconButton>
         ]}

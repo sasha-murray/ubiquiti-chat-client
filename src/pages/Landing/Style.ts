@@ -13,6 +13,15 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
     justifyContent: 'center'
   },
+  heading: {
+
+  },
+  subtitle: {
+
+  },
+  textField: {
+
+  },
   form: {
     alignItems: 'center',
     display: 'flex',
