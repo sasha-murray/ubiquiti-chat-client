@@ -3,17 +3,19 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { disconnectManually, sendMessage, joinChat, setToast } from '../../state/actions'
 
+
 import { Button, TextField } from '@material-ui/core'
 import Message from '../../components/Message/Message'
 import useStyles from './Style'
+import { useTypedSelector } from '../../state/reducers/rootReducer'
 
 const Chat = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const name = useSelector(state => state.user)
-  const messages = useSelector(state => state.chat)
+  const name = useTypedSelector(state => state.user)
+  const messages = useTypedSelector(state => state.chat)
   const [message, setMessage] = useState('')
 
   const messageHandler = event => {
